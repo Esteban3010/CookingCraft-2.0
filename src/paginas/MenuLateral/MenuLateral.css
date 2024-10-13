@@ -1,0 +1,72 @@
+.menu-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  z-index: 1000;
+}
+
+.menu-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  height: 100%;
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu-lateral.abierto {
+  right: 0;
+}
+
+.menu-lateral ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 3.5rem;
+  width: 100%;
+}
+
+.menu-lateral ul li {
+  margin: 1.5rem 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #555;
+}
+
+.menu-item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.menu-item span {
+  font-size: 1.2rem;
+}

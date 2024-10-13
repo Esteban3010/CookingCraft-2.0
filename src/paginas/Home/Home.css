@@ -1,0 +1,53 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+  background-color: #5e99c8;
+  min-height: 100vh;
+  font-size: 1.4rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+.icon-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.icon-button {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  position: relative; /* Necesario para posicionar el texto emergente */
+  transition: transform 0.3s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+}
+
+.icon-button::after {
+  content: attr(data-texto); /* Muestra el texto del atributo data-texto */
+  position: absolute;
+  top: 110%; /* Coloca el texto justo debajo de la imagen */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  opacity: 0; /* Oculta el texto por defecto */
+  pointer-events: none; /* Evita que el texto capture eventos del mouse */
+  transition: opacity 0.3s ease;
+}
+
+.icon-button:hover::after {
+  opacity: 1; /* Muestra el texto al hacer hover */
+}
