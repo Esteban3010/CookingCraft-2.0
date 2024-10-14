@@ -28,20 +28,22 @@ function Contenido() {
       <MenuLateral /> {/* Coloca el menú lateral aquí */}
       <h1>Contenido</h1>
       {data.map((item, index) => (
-        <div key={index} className="contenido-item">
-          <div className="contenido-header">
-            <div className="user-info">
-              <img src={contacto} alt="Usuario" className="user-icon" />
-              <p className="user-name">{item.nombre}</p>
+        <div className = "feed-box" >
+          <div key={index} className="contenido-item">
+            <div className="contenido-header">
+              <div className="user-info">
+                <img src={contacto} alt="Usuario" className="user-icon" />
+                <p className="user-name">{item.nombre}</p>
+              </div>
+              <h3 className="title">{item.titulo}</h3>
             </div>
-            <h3 className="title">{item.titulo}</h3>
-          </div>
-          <div className="contenido-media">
-            <img src={multimedia} alt="Multimedia" className="media-img" />
-          </div>
-          <div className="contenido-description">
-            <p>Descripción: {item.descripcion}</p>
-            <button className="comment-button">💬</button>
+            <div className="contenido-media">
+              <img src={multimedia} alt="Multimedia" className="media-img" />
+            </div>
+            <div className="contenido-description">
+              <p>Descripción: {item.descripcion}</p>
+              <button className="comment-button">💬</button>
+            </div>
           </div>
         </div>
       ))}

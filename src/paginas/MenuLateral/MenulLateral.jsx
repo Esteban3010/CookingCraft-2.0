@@ -15,21 +15,22 @@ function MenuLateral() {
 
   return (
     <div>
-      <button className="menu-button" onClick={toggleMenu}>
+      {/* Por preguntar si se puede dejar ese div o si se deja button (recuadro blanco del boton) */}
+      <div className="menu-button" onClick={toggleMenu}>
         <img src={menuBarritas} alt="Menu" className="menu-icon" />
-      </button>
+      </div>
       <div className={`menu-lateral ${menuAbierto ? 'abierto' : ''}`}>
         <ul>
           <li>
             <Link to="/contenido" className="menu-item">
               <img src={gorro} alt="feed" />
-              <span>feed</span>
+              <span>Feed</span>
             </Link>
           </li>
           <li>
             <Link to="/aspirantes" className="menu-item">
               <img src={cocinero} alt="aspirantes" />
-              <span>aspirantes</span>
+              <span>Aspirantes</span>
             </Link>
           </li>
           <li>

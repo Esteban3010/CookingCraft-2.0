@@ -12,7 +12,7 @@
   .contenido-item {
     margin-bottom: 1rem;
     padding: 1rem 0;
-    border-bottom: 4px solid #d3d3d3; /* Línea divisoria */
+    border-bottom: 4px solid #000000; /* Línea divisoria */
   }
   
   .contenido-header {
@@ -84,7 +84,14 @@
     cursor: pointer;
     margin-left: 10px;
   }
-  
 
-
+  .feed-box {
+    background-color: #5e99c8; 
+    border: 2px solid #333; 
+    padding: 20px; 
+    margin: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 700px;
+  }
   

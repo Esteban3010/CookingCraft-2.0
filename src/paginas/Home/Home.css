@@ -10,6 +10,11 @@
   font-size: 1.4rem;
 }
 
+p {
+  font: bold;
+  color: #000;
+} 
+
 h1 {
   margin-bottom: 2rem;
 }
@@ -31,6 +36,7 @@ h1 {
   transform: scale(1.1);
 }
 
+
 .icon-button::after {
   content: attr(data-texto); /* Muestra el texto del atributo data-texto */
   position: absolute;
@@ -49,5 +55,5 @@ h1 {
 }
 
 .icon-button:hover::after {
-  opacity: 1; /* Muestra el texto al hacer hover */
+  opacity: 1; 
 }

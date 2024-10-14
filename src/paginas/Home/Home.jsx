@@ -12,12 +12,15 @@ function Home() {
       <div className="icon-container">
         <Link to="/aspirantes">
           <img src={cocinero} alt="Cocinero" className="icon-button" data-texto="Aspirantes" />
+          <p>Aspirantes</p>
         </Link>
         <Link to="/contenido">
           <img src={gorro} alt="Gorro de Chef" className="icon-button" data-texto="Contenido" />
+          <p>Feed</p>
         </Link>
         <Link to="/mensajes">
           <img src={mensaje} alt="Mensaje" className="icon-button" data-texto="Mensajes" />
+          <p>Chat</p>
         </Link>
       </div>
     </div>
