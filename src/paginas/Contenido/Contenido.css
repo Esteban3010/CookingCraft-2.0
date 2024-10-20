@@ -1,97 +1,171 @@
 .contenido-container {
-    padding: 1rem;
-  }
-  
-  h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-  
-  .contenido-item {
-    margin-bottom: 1rem;
-    padding: 1rem 0;
-    border-bottom: 4px solid #000000; /* Línea divisoria */
-  }
-  
-  .contenido-header {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 1rem;
-  }
-  
-  .user-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 5px;
-  }
-  
-  .user-name {
-    font-size: 0.9rem;
-    color: #000000;
-    margin: 0;
-  }
-  
-  .title {
-    font-size: 1.5rem;
-    color: #000000;
-    text-align:center;
-    flex: 0.875;
-  }
-  
-  .menu-button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .contenido-media {
-    margin-top: 1rem;
-  }
-  
-  .media-img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .contenido-description {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1rem;
-    color: #666;
-    margin-top: 1rem;
-  }
-  
-  .contenido-description p {
-    margin: 0;
-  }
-  
-  .comment-button {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    margin-left: 10px;
-  }
+  padding: 1rem;
+}
 
-  .feed-box {
-    background-color: #39586D; 
-    border: 2px solid #000000; 
-    padding: 20px; 
-    margin: 20px; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 700px;
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.contenido-item {
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  border-bottom: 4px solid #000000;
+}
+
+.contenido-header {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.user-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  color: #000000;
+  margin: 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #000000;
+  text-align: center;
+  flex: 0.875;
+}
+
+.contenido-media {
+  margin-top: 1rem;
+}
+
+.media-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.contenido-description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.contenido-description p {
+  margin: 0;
+}
+
+.comment-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.feed-box {
+  background-color: #39586D;
+  border: 2px solid #000000;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 700px;
+}
+
+.comments-section {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f1efef;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.comment-box {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.comment-user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-user {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0;
+}
+
+.comment-text {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilo y animación para el botón de like */
+.like-button {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: #007BFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.like-button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  transition: transform 0.3s;
+}
+
+.liked img {
+  animation: thumbUpAnimation 0.6s ease; /* Cambié la duración para hacer visible la rotación */
+}
+
+@keyframes thumbUpAnimation {
+  0% {
+    transform: scale(1) rotate(0deg); /* Estado inicial */
   }
-  
+  50% {
+    transform: scale(1.5) rotate(-30deg); /* Agranda el pulgar y rota hacia atrás */
+  }
+  100% {
+    transform: scale(1) rotate(0deg); /* Vuelve al tamaño normal y rota a la posición inicial */
+  }
+}
+
+.view-replies {
+  font-size: 0.9rem;
+  color: #007BFF;
+  cursor: pointer;
+}
