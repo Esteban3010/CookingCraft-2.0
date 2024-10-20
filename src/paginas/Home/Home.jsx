@@ -10,9 +10,9 @@ function Home() {
     <div className="home-container">
       <h1>Cooking<br />Craft</h1>
       <div className="icon-container">
-        <Link to="/aspirantes">
+        <Link to="/recomendados">
           <img src={cocinero} alt="Cocinero" className="icon-button" data-texto="Aspirantes" />
-          <p>Aspirantes</p>
+          <p>Recomendados</p>
         </Link>
         <Link to="/contenido">
           <img src={gorro} alt="Gorro de Chef" className="icon-button" data-texto="Contenido" />

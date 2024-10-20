@@ -36,13 +36,13 @@
   
   .user-name {
     font-size: 0.9rem;
-    color: #333;
+    color: #000000;
     margin: 0;
   }
   
   .title {
     font-size: 1.5rem;
-    color: #333;
+    color: #000000;
     text-align:center;
     flex: 0.875;
   }
@@ -86,8 +86,8 @@
   }
 
   .feed-box {
-    background-color: #5e99c8; 
-    border: 2px solid #333; 
+    background-color: #39586D; 
+    border: 2px solid #000000; 
     padding: 20px; 
     margin: 20px; 
     border-radius: 8px; 

@@ -25,7 +25,7 @@ const data = [
 function Contenido() {
   return (
     <div className="contenido-container">
-      <MenuLateral /> {/* Coloca el menú lateral aquí */}
+      <MenuLateral />
       <h1>Contenido</h1>
       {data.map((item, index) => (
         <div className = "feed-box" >

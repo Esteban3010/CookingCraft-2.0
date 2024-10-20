@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+.chatList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chatItem {
+  margin-bottom: 20px;
+}
+
+.chatContent {
+  display: flex;
+  flex-direction: column; /* Hace que la imagen esté encima del nombre */
+  align-items: center;
+}
+
+.profilePic {
+  width: 17%;
+  height: 17%;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px; /* Añade espacio entre la imagen y el nombre */
+}
+
+.name {
+  font-size: 1.2rem;
+  color: #000000;
+}

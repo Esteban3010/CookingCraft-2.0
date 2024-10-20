@@ -4,7 +4,7 @@ import InicioSesion from '../InicioSesion/InicioSesion';
 import Contenido from '../Contenido/Contenido';
 import Registrarse from '../Registrarse/Registrarse';
 import Home from '../Home/Home';
-import Aspirantes from '../Aspirantes/Aspirantes';
+import Recomendados from '../Recomendados/Recomendados';
 import Mensajes from '../Mensajes/Mensajes';
 
 
@@ -16,7 +16,7 @@ function App() {
         <Route path="/contenido" element={<Contenido />} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/aspirantes" element={<Aspirantes />} />
+        <Route path="/recomendados" element={<Recomendados />} />
         <Route path="/mensajes" element={<Mensajes />} />
       </Routes>
     </Router>
