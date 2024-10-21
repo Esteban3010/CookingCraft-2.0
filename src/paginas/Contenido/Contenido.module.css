@@ -1,0 +1,171 @@
+.contenidoContainer {
+  padding: 1rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.contenidoItem {
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  border-bottom: 4px solid #000000;
+}
+
+.contenidoHeader {
+  display: flex;
+  align-items: center;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.userIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.userName {
+  font-size: 0.9rem;
+  color: #000000;
+  margin: 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #000000;
+  text-align: center;
+  flex: 0.875;
+}
+
+.contenidoMedia {
+  margin-top: 1rem;
+}
+
+.mediaImg {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.contenidoDescription {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.contenidoDescription p {
+  margin: 0;
+}
+
+.commentButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.feedBox {
+  background-color: #39586D;
+  border: 2px solid #000000;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 700px;
+}
+
+/* Estilo para los comentarios */
+.commentsSection {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f1efef;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.commentBox {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.commentUserIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentUser {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0;
+}
+
+.commentText {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.commentActions {
+  display: flex;
+  gap: 10px;
+}
+
+.likeButton {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: #007BFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.likeButton img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  transition: transform 0.3s;
+}
+
+.liked img {
+  animation: thumbUpAnimation 0.6s ease; /* Cambié la duración para hacer visible la rotación */
+}
+
+@keyframes thumbUpAnimation {
+  0% {
+    transform: scale(1) rotate(0deg); /* Estado inicial */
+  }
+  50% {
+    transform: scale(1.5) rotate(-30deg); /* Agranda el pulgar y rota hacia atrás */
+  }
+  100% {
+    transform: scale(1) rotate(0deg); /* Vuelve al tamaño normal y rota a la posición inicial */
+  }
+}
+
+.viewReplies {
+  font-size: 0.9rem;
+  color: #007BFF;
+  cursor: pointer;
+}
