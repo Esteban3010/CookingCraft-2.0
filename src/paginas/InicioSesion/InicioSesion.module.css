@@ -98,3 +98,9 @@ p {
 .registerLink:hover {
   text-decoration: underline;
 }
+
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

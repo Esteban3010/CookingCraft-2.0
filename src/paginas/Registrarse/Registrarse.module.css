@@ -84,34 +84,47 @@ p {
   margin-top: 1.2rem;
 }
 
+
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  bottom: 20px; 
+  right: 20px;  
+  width: auto;
+  height: auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Asegura que esté en la capa superior */
+  justify-content: flex-end; 
+  align-items: flex-end; 
+  padding: 0; 
 }
 
 .modalContent {
   background: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
+  padding: 15px 20px 10px 20px;
+  border-radius: 8px; 
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  width: 80%;
+  max-width: 250px;
+  width: auto;
+  font-size: 14px;
   position: relative;
-  z-index: 1001; /* Asegura que esté encima del overlay */
 }
+
+.modalContent h3 {
+  font-size: 16px;
+  margin: 0 0 5px 0; 
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.modalContent p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .closeX {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -15px;
+  right: -25px;
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -119,6 +132,7 @@ p {
   color: #333;
   cursor: pointer;
 }
+
 
 .closeX:hover {
   color: #000;
@@ -145,4 +159,79 @@ p {
 
 .loginLink:hover {
   text-decoration: underline;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+.passwordStrength {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.strengthBar {
+  width: 33%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: gray;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: rgb(232, 232, 1);
+}
+
+.green {
+  background-color: green;
+}
+
+.gray {
+  background-color: lightgray;
+}
+
+.strengthMessage {
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+  text-align: left; /* Alinea el texto al lado izquierdo */
+}
+
+/* Colores para el texto del mensaje de fortaleza */
+.textRed {
+  color: red;
+}
+
+.textYellow {
+  color: orange;
+}
+
+.textGreen {
+  color: green;
+}
+
+@keyframes shrink {
+  0% {
+      width: 100%;
+  }
+  100% {
+      width: 0%;
+  }
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px; 
+  background-color: rgba(128, 128, 128, 0.7); /* Color gris con transparencia */
+  width: 100%;
+  animation: shrink 5s linear forwards;
 }
