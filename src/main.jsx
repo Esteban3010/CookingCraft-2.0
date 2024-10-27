@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
+import { store } from './app/store'
+import { Provider } from 'react-redux'
 
 // Importa las funciones necesarias de Firebase
 import { initializeApp } from 'firebase/app';
@@ -24,7 +26,9 @@ const analytics = getAnalytics(app);
 
 // Render de la aplicación de React
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
 );

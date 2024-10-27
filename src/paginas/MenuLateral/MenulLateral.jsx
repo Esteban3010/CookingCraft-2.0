@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMenu } from '../../app/menuSlice';
 import { Link } from 'react-router-dom';
 import styles from './MenuLateral.module.css';
 import gorro from '../Imagenes/gorro.png';
@@ -7,16 +9,16 @@ import mensaje from '../Imagenes/mensaje.png';
 import menuBarritas from '../Imagenes/menuBarritas.png';
 
 function MenuLateral() {
-  const [menuAbierto, setMenuAbierto] = useState(false);
+  const dispatch = useDispatch();
+  const menuAbierto = useSelector((state) => state.menu.abierto);
 
-  const toggleMenu = () => {
-    setMenuAbierto(!menuAbierto);
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu());
   };
 
   return (
     <div>
-      {/* Por preguntar si se puede dejar ese div o si se deja button (recuadro blanco del boton) */}
-      <button className={styles.menuButton} onClick={toggleMenu}>
+      <button className={styles.menuButton} onClick={toggleMenuHandler}>
         <img src={menuBarritas} alt="Menu" className={styles.menuIcon} />
       </button>
       <div className={`${styles['menuLateral']} ${menuAbierto ? styles.abierto : ''}`}>
