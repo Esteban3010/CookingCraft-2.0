@@ -36,8 +36,10 @@ h3 {
 
 .inputGroup {
   position: relative;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .inputGroup input {
