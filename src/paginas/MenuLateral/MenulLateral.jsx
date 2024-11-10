@@ -7,6 +7,7 @@ import gorro from '../Imagenes/gorro.png';
 import cocinero from '../Imagenes/cocinero.png';
 import mensaje from '../Imagenes/mensaje.png';
 import menuBarritas from '../Imagenes/menuBarritas.png';
+import tuerca from '../Imagenes/tuerca.png';
 
 function MenuLateral() {
   const dispatch = useDispatch();
@@ -39,6 +40,12 @@ function MenuLateral() {
             <Link to="/mensajes" className={styles.menuItem}>
               <img src={mensaje} alt="Chat" />
               <span>Chat</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/configuracion" className={styles.menuItem}>
+              <img src={tuerca} alt="Configuracion" />
+              <span>Configuracion</span>
             </Link>
           </li>
         </ul>

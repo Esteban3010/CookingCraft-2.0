@@ -6,7 +6,7 @@ import Registrarse from './paginas//Registrarse/Registrarse';
 import Home from './paginas/Home/Home';
 import Recomendados from './paginas/Recomendados/Recomendados';
 import Mensajes from './paginas//Mensajes/Mensajes';
-
+import Configuracion from './paginas//Configuracion/Configuracion';
 
 function App() {
   return (
@@ -18,10 +18,10 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/recomendados" element={<Recomendados />} />
         <Route path="/mensajes" element={<Mensajes />} />
+        <Route path="/configuracion" element={<Configuracion />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-

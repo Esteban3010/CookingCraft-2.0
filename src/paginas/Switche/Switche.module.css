@@ -1,0 +1,44 @@
+.toggleSwitch {
+    bottom: 5px;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggleSwitch.on {
+    background-color: #000;
+  }
+  
+  .toggleHandle {
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s ease;
+  }
+  
+  .toggleSwitch.on .toggleHandle {
+    animation: slideRight 0.3s forwards;
+  }
+  
+  .toggleSwitch.off .toggleHandle {
+    animation: slideLeft 0.3s forwards;
+  }
+  
+  @keyframes slideRight {
+    from { left: 2px; }
+    to { left: 32px; }
+  }
+  
+  @keyframes slideLeft {
+    from { left: 32px; }
+    to { left: 2px; }
+  }
+  
