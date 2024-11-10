@@ -12,19 +12,27 @@ function InicioSesion() {
   const [nombreUsuario, setNombreUsuario] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [mensajeError, setMensajeError] = useState('');
-
+  const [shake, setShake] = useState(false); // Nuevo estado para la animación de sacudida
 
   
   const handleLogin = async () => {
+
+    setMensajeError('');
+    setShake(false);
+
     // Verificar si el campo de nombre de usuario está vacío
     if (!nombreUsuario) {
       setMensajeError('Por favor, ingresa un nombre de usuario.');
+      setShake(true);
+      setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
       return;
     }
 
     // Verificar si el campo de contraseña está vacío
     if (!contraseña) {
       setMensajeError('Por favor, ingresa la contraseña.');
+      setShake(true);
+      setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
       return;
     }
 
@@ -36,6 +44,8 @@ function InicioSesion() {
       if (querySnapshot.empty) {
         // Si el nombre de usuario no existe
         setMensajeError('El usuario no existe.');
+        setShake(true);
+        setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
         return;
       }
 
@@ -49,6 +59,8 @@ function InicioSesion() {
 
       if (!usuarioCorrecto) {
         setMensajeError('Contraseña incorrecta.');
+        setShake(true);
+        setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
         return;
       }
 
@@ -94,7 +106,7 @@ function InicioSesion() {
           </div>
 
           {/* Mostrar el mensaje de error si existe */}
-          {mensajeError && <p className={styles.errorMessage}>{mensajeError}</p>}
+          {mensajeError && <p className={`${styles.errorMessage} ${shake ? styles.shake : ''}`}>{mensajeError}</p>}
 
           <button type="button" className={styles.loginButton} onClick={handleLogin}>
             Ingresar

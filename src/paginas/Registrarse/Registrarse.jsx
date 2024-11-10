@@ -4,7 +4,7 @@ import styles from './Registrarse.module.css';
 import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 
-// Configuración de Firebase (puedes importarla si prefieres)
+
 const firebaseConfig = {
   apiKey: "AIzaSyBc_zjAFA8Y9k0QauB6sFFp6_LuGTFywY",
   authDomain: "coockingcraft-c5d4e.firebaseapp.com",
@@ -26,6 +26,9 @@ function Registrarse() {
   const [confirmarContraseña, setConfirmarContraseña] = useState('');
   const [mensajeError, setMensajeError] = useState('');
   const [fuerzaContraseña, setFuerzaContraseña] = useState(0);
+  const [isLoading, setIsLoading] = useState(false); 
+  const [shake, setShake] = useState(false); // Nuevo estado para la animación de sacudida
+
 
   const getPasswordStrengthMessage = () => {
     if (fuerzaContraseña >= 5) {
@@ -60,61 +63,92 @@ function Registrarse() {
   
 
   const handleRegister = async () => {
-    // Verificar si se ingresó la contraseña
+    if (isLoading) return;
+
+    setIsLoading(true);
+    setMensajeError('');
+    setShake(false);
+  
     if (!contraseña) {
       setMensajeError('Por favor, ingresa una contraseña');
+      setIsLoading(false);
+      setShake(true);
+      setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
       return;
     }
-
+  
     if (!correo) {
       setMensajeError('Por favor, ingresa un correo');
+      setIsLoading(false);
+      setShake(true);
+      setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
       return;
     }
 
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar correo
+    if (!regexCorreo.test(correo)) {
+      setMensajeError('Por favor, ingresa un correo válido');
+      setIsLoading(false);
+      setShake(true);
+      setTimeout(() => setShake(false), 300);
+      return;
+    }
+  
     if (!nombreUsuario) {
       setMensajeError('Por favor, ingresa un usuario');
+      setIsLoading(false);
+      setShake(true);
+      setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
       return;
     }
-
-    // Verificar si las contraseñas coinciden
+  
     if (contraseña !== confirmarContraseña) {
       setMensajeError('Las contraseñas no coinciden');
+      setIsLoading(false);
+      setShake(true);
+      setTimeout(() => setShake(false), 300); // Restablece `shake` después de la animación
       return;
     }
-
-    // Verificar si el nombre de usuario ya existe
-    const q = query(collection(db, "usuarios"), where("nombreUsuario", "==", nombreUsuario));
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      setMensajeError('El nombre de usuario ya existe');
-      return;
-    }
-
-    // Verificar si el correo ya está registrado
-    const qCorreo = query(collection(db, "usuarios"), where("correo", "==", correo));
-    const querySnapshotCorreo = await getDocs(qCorreo);
-
-    if (!querySnapshotCorreo.empty) {
-      setMensajeError('El correo ya está registrado');
-      return;
-    }
-
-    // Registrar el usuario en Firestore
+  
+  
     try {
+      const q = query(collection(db, "usuarios"), where("nombreUsuario", "==", nombreUsuario));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        setMensajeError('El nombre de usuario ya existe');
+        setIsLoading(false); // Finaliza la carga
+        setShake(true); // Activa la sacudida cuando hay un error
+        return;
+      }
+  
+      const qCorreo = query(collection(db, "usuarios"), where("correo", "==", correo));
+      const querySnapshotCorreo = await getDocs(qCorreo);
+  
+      if (!querySnapshotCorreo.empty) {
+        setMensajeError('El correo ya está registrado');
+        setIsLoading(false); // Finaliza la carga
+        setShake(true); // Activa la sacudida cuando hay un error
+        return;
+      }
+  
       const docRef = await addDoc(collection(db, "usuarios"), {
         nombreUsuario: nombreUsuario,
         correo: correo,
         contraseña: contraseña
       });
+  
       console.log("Usuario registrado con ID: ", docRef.id);
       setMensajeExito(true);
-      setMensajeError(''); // Limpiar cualquier mensaje de error
+      setMensajeError('');
     } catch (e) {
       console.error("Error al registrar el usuario: ", e);
       setMensajeError('Ocurrió un error al registrar el usuario');
+    } finally {
+      setIsLoading(false); // Finaliza la carga después de intentar registrar
     }
   };
+  
 
   const closeModal = () => {
     setMensajeExito(false);
@@ -187,9 +221,9 @@ function Registrarse() {
 
 
 
-          {mensajeError && <p className={styles.errorMessage}>{mensajeError}</p>}
-          <button type="button" className={styles.registerButton} onClick={handleRegister}>
-            Registrar
+          {mensajeError && <p className={`${styles.errorMessage} ${shake ? styles.shake : ''}`}>{mensajeError}</p>}
+          <button type="button" className={styles.registerButton} onClick={handleRegister} disabled={isLoading}>
+            {isLoading ? "Registrando..." : "Registrar"}
           </button>
         </form>
         <p>
