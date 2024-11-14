@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './InicioSesion.module.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase'; // Asegúrate de que la ruta sea correcta
 
 function InicioSesion({ setUsuario }) { // Agregar setUsuario como prop
-  const db = getFirestore();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [nombreUsuario, setNombreUsuario] = useState('');

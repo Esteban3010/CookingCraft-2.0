@@ -36,37 +36,94 @@
 // };
 
 
-// funcional
+
+// funcional 
 
 // import React, { useState, useEffect } from 'react';
-// import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from 'firebase/firestore';
+// import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, getDocs } from 'firebase/firestore';
 // import styles from './Mensajes.module.css';
 
-// // Configuración de Firestore
 // const db = getFirestore();
 
-// const Mensajes = ({ nombreUsuario }) => { // Recibe nombreUsuario como prop
-//   console.log("Nombre de usuario recibido en Mensajes:", nombreUsuario);
+// const Mensajes = ({ nombreUsuario }) => {
 //   const [mensajes, setMensajes] = useState([]);
 //   const [nuevoMensaje, setNuevoMensaje] = useState('');
+//   const [destinatario, setDestinatario] = useState('');
+//   const [usuarios, setUsuarios] = useState([]);
+//   const [idUsuarioActual, setIdUsuarioActual] = useState('');
+//   const [idDestinatario, setIdDestinatario] = useState('');
 
+//   // Obtener la lista de usuarios y el ID del usuario actual al cargar el componente
 //   useEffect(() => {
-//     // Escucha los mensajes en tiempo real
-//     const q = query(collection(db, 'mensajes'), orderBy('timestamp'));
-//     const unsubscribe = onSnapshot(q, (snapshot) => {
-//       setMensajes(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-//     });
-//     return () => unsubscribe();
-//   }, []);
+//     const obtenerUsuarios = async () => {
+//       try {
+//         const usuariosSnapshot = await getDocs(collection(db, 'usuarios'));
+//         const listaUsuarios = usuariosSnapshot.docs.map(doc => {
+//           const data = doc.data();
+//           if (data.nombreUsuario === nombreUsuario) {
+//             setIdUsuarioActual(doc.id); // Almacena el ID del usuario actual
+//           }
+//           return {
+//             id: doc.id,
+//             nombre: data.nombreUsuario
+//           };
+//         }).filter(usuario => usuario.nombre !== nombreUsuario); // Excluir el usuario actual
 
-//   const enviarMensaje = async () => {
-//     if (nuevoMensaje.trim()) {
-//       await addDoc(collection(db, 'mensajes'), {
-//         usuario: nombreUsuario,
-//         texto: nuevoMensaje,
-//         timestamp: new Date()
+//         setUsuarios(listaUsuarios);
+//       } catch (error) {
+//         console.error("Error al obtener usuarios:", error);
+//       }
+//     };
+
+//     obtenerUsuarios();
+//   }, [nombreUsuario]);
+
+//   // Configurar la suscripción a mensajes entre el usuario actual y el destinatario seleccionado
+//   useEffect(() => {
+//     if (idUsuarioActual && idDestinatario) {
+//       const q = query(
+//         collection(db, 'mensajes'),
+//         where('usuarios', 'array-contains', idUsuarioActual),
+//         orderBy('timestamp')
+//       );
+
+//       const unsubscribe = onSnapshot(q, (snapshot) => {
+//         const mensajesFiltrados = snapshot.docs
+//           .map(doc => ({ id: doc.id, ...doc.data() }))
+//           .filter(msg => msg.usuarios.includes(idDestinatario)); // Filtrar solo los mensajes entre ambos IDs
+
+//         setMensajes(mensajesFiltrados);
 //       });
-//       setNuevoMensaje(''); // Limpia el campo de entrada después de enviar
+
+//       return () => unsubscribe();
+//     }
+//   }, [idUsuarioActual, idDestinatario]);
+
+//   // Actualizar el destinatario y su ID cuando se selecciona uno
+//   const seleccionarDestinatario = (e) => {
+//     const seleccionado = e.target.value;
+//     setDestinatario(seleccionado);
+//     const usuario = usuarios.find(u => u.nombre === seleccionado);
+//     if (usuario) {
+//       setIdDestinatario(usuario.id); // Almacenar el ID del destinatario seleccionado
+//     }
+//   };
+
+//   // Función para enviar mensaje
+//   const enviarMensaje = async () => {
+//     if (nuevoMensaje.trim() && idDestinatario) {
+//       try {
+//         await addDoc(collection(db, 'mensajes'), {
+//           texto: nuevoMensaje,
+//           timestamp: new Date(),
+//           usuarios: [idUsuarioActual, idDestinatario].sort(), // Usar IDs para consistencia
+//           de: nombreUsuario,
+//           para: destinatario,
+//         });
+//         setNuevoMensaje('');
+//       } catch (error) {
+//         console.error("Error al enviar mensaje:", error);
+//       }
 //     }
 //   };
 
@@ -75,10 +132,20 @@
 //       <div className={styles.mensajes}>
 //         {mensajes.map((msg) => (
 //           <div key={msg.id} className={styles.mensaje}>
-//             <strong>{msg.usuario}: </strong>{msg.texto}
+//             <strong>{msg.de}: </strong>{msg.texto}
 //           </div>
 //         ))}
 //       </div>
+//       {/* Selector de destinatario */}
+//       <select value={destinatario} onChange={seleccionarDestinatario}>
+//         <option value="">Selecciona un destinatario</option>
+//         {usuarios.map((usuario) => (
+//           <option key={usuario.id} value={usuario.nombre}>
+//             {usuario.nombre}
+//           </option>
+//         ))}
+//       </select>
+//       {/* Campo de texto para el mensaje */}
 //       <input
 //         value={nuevoMensaje}
 //         onChange={(e) => setNuevoMensaje(e.target.value)}
@@ -91,9 +158,8 @@
 
 // export default Mensajes;
 
-
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, addDoc, onSnapshot, orderBy, query, where } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, onSnapshot, query, where, orderBy, getDocs } from 'firebase/firestore';
 import styles from './Mensajes.module.css';
 
 const db = getFirestore();
@@ -101,39 +167,86 @@ const db = getFirestore();
 const Mensajes = ({ nombreUsuario }) => {
   const [mensajes, setMensajes] = useState([]);
   const [nuevoMensaje, setNuevoMensaje] = useState('');
-  const [destinatario, setDestinatario] = useState(''); // El nombre del usuario con el que quieres chatear
+  const [destinatario, setDestinatario] = useState('');
+  const [usuarios, setUsuarios] = useState([]);
+  const [idUsuarioActual, setIdUsuarioActual] = useState('');
+  const [idDestinatario, setIdDestinatario] = useState('');
 
+  // Obtener la lista de usuarios y el ID del usuario actual al cargar el componente
   useEffect(() => {
-    if (nombreUsuario && destinatario) {
-      // Consulta para obtener mensajes entre el usuario actual y el destinatario
+    const obtenerUsuarios = async () => {
+      try {
+        const usuariosSnapshot = await getDocs(collection(db, 'usuarios'));
+        const listaUsuarios = usuariosSnapshot.docs.map(doc => {
+          const data = doc.data();
+          if (data.nombreUsuario === nombreUsuario) {
+            setIdUsuarioActual(doc.id); // Almacena el ID del usuario actual
+          }
+          return {
+            id: doc.id,
+            nombre: data.nombreUsuario
+          };
+        }).filter(usuario => usuario.nombre !== nombreUsuario); // Excluir el usuario actual
+
+        setUsuarios(listaUsuarios);
+      } catch (error) {
+        console.error("Error al obtener usuarios:", error);
+      }
+    };
+
+    obtenerUsuarios();
+  }, [nombreUsuario]);
+
+  // Configurar la suscripción a mensajes entre el usuario actual y el destinatario seleccionado
+  useEffect(() => {
+    if (idUsuarioActual && idDestinatario) {
+      // Generar un chatID único y consistente
+      const chatID = [idUsuarioActual, idDestinatario].sort().join('_');
+
       const q = query(
         collection(db, 'mensajes'),
-        where('usuarios', 'array-contains', nombreUsuario),
+        where('chatID', '==', chatID),
         orderBy('timestamp')
       );
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
-        const mensajesFiltrados = snapshot.docs
-          .map(doc => ({ id: doc.id, ...doc.data() }))
-          .filter(msg => msg.usuarios.includes(destinatario)); // Filtra para mostrar solo mensajes de la conversación entre ambos usuarios
-
-        setMensajes(mensajesFiltrados);
+        const mensajes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setMensajes(mensajes);
       });
 
       return () => unsubscribe();
     }
-  }, [nombreUsuario, destinatario]);
+  }, [idUsuarioActual, idDestinatario]);
 
+  // Actualizar el destinatario y su ID cuando se selecciona uno
+  const seleccionarDestinatario = (e) => {
+    const seleccionado = e.target.value;
+    setDestinatario(seleccionado);
+    const usuario = usuarios.find(u => u.nombre === seleccionado);
+    if (usuario) {
+      setIdDestinatario(usuario.id); // Almacenar el ID del destinatario seleccionado
+    }
+  };
+
+  // Función para enviar mensaje
   const enviarMensaje = async () => {
-    if (nuevoMensaje.trim() && destinatario) {
-      await addDoc(collection(db, 'mensajes'), {
-        texto: nuevoMensaje,
-        timestamp: new Date(),
-        usuarios: [nombreUsuario, destinatario], // Incluye ambos usuarios en el mensaje
-        de: nombreUsuario, // Remitente
-        para: destinatario  // Destinatario
-      });
-      setNuevoMensaje('');
+    if (nuevoMensaje.trim() && idDestinatario) {
+      try {
+        // Generar un chatID único y consistente
+        const chatID = [idUsuarioActual, idDestinatario].sort().join('_');
+
+        await addDoc(collection(db, 'mensajes'), {
+          texto: nuevoMensaje,
+          timestamp: new Date(),
+          usuarios: [idUsuarioActual, idDestinatario].sort(), // Usar IDs para consistencia
+          de: nombreUsuario,
+          para: destinatario,
+          chatID: chatID, // Agregar el chatID al documento
+        });
+        setNuevoMensaje('');
+      } catch (error) {
+        console.error("Error al enviar mensaje:", error);
+      }
     }
   };
 
@@ -146,12 +259,16 @@ const Mensajes = ({ nombreUsuario }) => {
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        placeholder="Destinatario"
-        value={destinatario}
-        onChange={(e) => setDestinatario(e.target.value)}
-      />
+      {/* Selector de destinatario */}
+      <select value={destinatario} onChange={seleccionarDestinatario}>
+        <option value="">Selecciona un destinatario</option>
+        {usuarios.map((usuario) => (
+          <option key={usuario.id} value={usuario.nombre}>
+            {usuario.nombre}
+          </option>
+        ))}
+      </select>
+      {/* Campo de texto para el mensaje */}
       <input
         value={nuevoMensaje}
         onChange={(e) => setNuevoMensaje(e.target.value)}

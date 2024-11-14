@@ -1,22 +1,9 @@
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Registrarse.module.css';
-import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';  // Asegúrate de ajustar la ruta según tu estructura de carpetas
 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBc_zjAFA8Y9k0QauB6sFFp6_LuGTFywY",
-  authDomain: "coockingcraft-c5d4e.firebaseapp.com",
-  projectId: "coockingcraft-c5d4e",
-  storageBucket: "coockingcraft-c5d4e.appspot.com",
-  messagingSenderId: "35624123692",
-  appId: "1:35624123692:web:b4b4f0d171be1a9cb38b3",
-  measurementId: "G-595MLWTKG9"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 function Registrarse() {
   const [mensajeExito, setMensajeExito] = useState(false);
