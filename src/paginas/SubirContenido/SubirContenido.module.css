@@ -1,11 +1,31 @@
+
+
 .subirContainer {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #2b3a42; /* Fondo oscuro */
+  background-color: #2b3a42;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative; /* Añadido para posicionar el botón de cerrar */
 }
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: #ff4b4b;
+}
+
 
 .subirContainer h1 {
   text-align: center;

@@ -56,8 +56,15 @@ function SubirContenido({ nombreUsuario }) {
     }
   };
 
+  const handleClose = () => {
+    navigate('/contenido');
+  };
+
   return (
     <div className={styles.subirContainer}>
+      <button className={styles.closeButton} onClick={handleClose}>
+        X
+      </button>
       <h1>Subir Contenido</h1>
       <div className={styles.formGroup}>
         <label htmlFor="titulo">Título</label>

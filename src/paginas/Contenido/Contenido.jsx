@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, getDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase';
 import styles from './Contenido.module.css';
 import contacto from '../Imagenes/contacto.png';
 import MenuLateral from '../MenuLateral/MenulLateral';
 import thumbUp from '../Imagenes/thumb-up.png';
 
-function Contenido() {
+function Contenido({ nombreUsuario }) {  // Recibe nombreUsuario como prop
   const [contenido, setContenido] = useState([]);
   const [openComments, setOpenComments] = useState(null);
-  const [liked, setLiked] = useState([]);
+  const [likedComments, setLikedComments] = useState({});
+  const [newComment, setNewComment] = useState('');
   const navigate = useNavigate();
 
-  // Cargar contenido desde Firestore
   useEffect(() => {
     const obtenerContenido = async () => {
       const contenidoCollection = collection(db, 'contenido');
@@ -23,7 +23,6 @@ function Contenido() {
         ...doc.data(),
       }));
       setContenido(contenidoData);
-      setLiked(Array(contenidoData.length).fill(false));
     };
 
     obtenerContenido();
@@ -31,16 +30,59 @@ function Contenido() {
 
   const toggleComments = (index) => {
     setOpenComments(openComments === index ? null : index);
-  };
-
-  const handleLike = (index) => {
-    const newLiked = [...liked];
-    newLiked[index] = !newLiked[index];
-    setLiked(newLiked);
+    setNewComment('');
   };
 
   const handleSubirClick = () => {
     navigate('/subircontenido');
+  };
+
+  const addComment = async (postId) => {
+    if (newComment.trim()) {
+      const postRef = doc(db, 'contenido', postId);
+      await updateDoc(postRef, {
+        comentarios: arrayUnion({
+          usuario: nombreUsuario,  // Usa nombreUsuario del usuario actual
+          texto: newComment,
+          likes: 0,
+        })
+      });
+      setNewComment('');
+      const contenidoCollection = collection(db, 'contenido');
+      const contenidoSnapshot = await getDocs(contenidoCollection);
+      const contenidoData = contenidoSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setContenido(contenidoData);
+    }
+  };
+
+  const toggleLike = async (postId, commentIndex) => {
+    const postRef = doc(db, 'contenido', postId);
+    const postSnapshot = await getDoc(postRef);
+    const postData = postSnapshot.data();
+
+    const updatedComments = postData.comentarios.map((comentario, index) => {
+      if (index === commentIndex) {
+        const isLiked = likedComments[`${postId}-${commentIndex}`];
+        return { ...comentario, likes: isLiked ? (comentario.likes || 0) - 1 : (comentario.likes || 0) + 1 };
+      }
+      return comentario;
+    });
+
+    await updateDoc(postRef, { comentarios: updatedComments });
+    
+    setLikedComments((prev) => ({
+      ...prev,
+      [`${postId}-${commentIndex}`]: !prev[`${postId}-${commentIndex}`],
+    }));
+
+    setContenido((prevContenido) =>
+      prevContenido.map((item) => 
+        item.id === postId ? { ...item, comentarios: updatedComments } : item
+      )
+    );
   };
 
   return (
@@ -73,22 +115,37 @@ function Contenido() {
               </div>
               {openComments === index && (
                 <div className={styles.commentsSection}>
-                  <div className={styles.commentBox}>
-                    <img src={contacto} alt="Usuario" className={styles.commentUserIcon} />
-                    <div className={styles.commentContent}>
-                      <p className={styles.commentUser}>@UsuarioRandom</p>
-                      <p className={styles.commentText}>¡Qué buen contenido!</p>
-                      <div className={styles.commentActions}>
-                        <button
-                          className={`${styles['likeButton']} ${liked[index] ? styles.liked : ''}`}
-                          onClick={() => handleLike(index)}
-                        >
-                          <img src={thumbUp} className={styles.thumbIcon} />
-                          {liked[index] ? 1 : 0}
-                        </button>
-                        <button className={styles.replyButton}>Responder</button>
+                  {item.comentarios?.map((comentario, i) => (
+                    <div className={styles.commentBox} key={i}>
+                      <img src={contacto} alt="Usuario" className={styles.commentUserIcon} />
+                      <div className={styles.commentContent}>
+                        <p className={styles.commentUser}>@{comentario.usuario}</p>
+                        <p className={styles.commentText}>{comentario.texto}</p>
+                        <div className={styles.commentActions}>
+                          <button
+                            className={`${styles.likeButton} ${
+                              likedComments[`${item.id}-${i}`] ? styles.liked : ''
+                            }`}
+                            onClick={() => toggleLike(item.id, i)}
+                          >
+                            <img src={thumbUp} className={styles.thumbIcon} alt="Like" />
+                            {comentario.likes || 0}
+                          </button>
+                        </div>
                       </div>
                     </div>
+                  ))}
+                  <div className={styles.commentInputContainer}>
+                    <input
+                      type="text"
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      placeholder="Escribe un comentario"
+                      className={styles.commentInput}
+                    />
+                    <button onClick={() => addComment(item.id)} className={styles.commentButton}>
+                      Enviar
+                    </button>
                   </div>
                 </div>
               )}
@@ -99,7 +156,6 @@ function Contenido() {
         <p>No hay contenido disponible.</p>
       )}
 
-      {/* Botón de "Subir" en la esquina inferior izquierda */}
       <button className={styles.subirButton} onClick={handleSubirClick}>
         Subir
       </button>
