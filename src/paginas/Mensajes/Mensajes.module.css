@@ -1,42 +1,95 @@
-/* .container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+
+.selectContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #000000;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #f0f4f8;
 }
 
-.chatList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+/* Estilos para la barra de selección de destinatario y mensaje */
+.messageInputContainer {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background-color: #2b3a42;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.chatItem {
-  margin-bottom: 20px;
+select, input[type="text"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #333;
+    color: #ddd;
 }
 
-.chatContent {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
+select {
+    flex: 1;
 }
 
-.profilePic {
-  width: 17%;
-  height: 17%;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px; 
+input[type="text"] {
+    flex: 3;
 }
 
-.name {
-  font-size: 1.2rem;
-  color: #000000;
-} */
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffffff00;
+}
+
+/* Estilos para el contenedor de mensajes */
+.chatContainer {
+    max-height: 400px; /* Altura máxima para el contenedor de mensajes */
+    overflow-y: auto; /* Permite el desplazamiento en el eje Y */
+    background-color: #1e2a30;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #f0f4f8;
+}
+
+/* Estilos para los mensajes individuales */
+.chatMessage {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #324a54;
+    border-radius: 5px;
+    color: #f0f4f8;
+}
+
+.chatMessage p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.chatMessage .sender {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

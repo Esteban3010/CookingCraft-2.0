@@ -1,0 +1,65 @@
+.subirContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #2b3a42; /* Fondo oscuro */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.subirContainer h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f0f4f8; /* Texto claro */
+  font-size: 24px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: bold;
+  color: #b0c4de; /* Texto en gris claro */
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%; /* Asegura que todos los inputs ocupen el ancho completo del contenedor */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #f5f5f5; /* Fondo claro para inputs */
+  color: #333; /* Texto oscuro en inputs */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.input[type="file"] {
+  padding: 5px;
+  background-color: #f5f5f5; /* Fondo claro para botón de archivo */
+  color: #333; /* Texto oscuro */
+}
+
+.uploadButton {
+  width: 100%; /* Asegura que el botón de subir también ocupe todo el ancho */
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.uploadButton:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.uploadButton:hover:enabled {
+  background-color: #0056b3;
+}

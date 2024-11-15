@@ -7,6 +7,7 @@ import Home from './paginas/Home/Home';
 import Recomendados from './paginas/Recomendados/Recomendados';
 import Mensajes from './paginas/Mensajes/Mensajes';
 import Configuracion from './paginas/Configuracion/Configuracion';
+import SubirContenido from './paginas/SubirContenido/SubirContenido';
 
 function App() {
   const [nombreUsuario, setNombreUsuario] = useState(null); // Estado para almacenar el nombre de usuario
@@ -21,12 +22,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<InicioSesion setUsuario={setNombreUsuario} />} /> {/* Pasar setUsuario a InicioSesion */}
-        <Route path="/contenido" element={<Contenido />} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/home" element={<Home />} />
         <Route path="/recomendados" element={<Recomendados />} />
         <Route path="/mensajes" element={<Mensajes nombreUsuario={nombreUsuario} />} /> {/* Pasar nombreUsuario a Mensajes */}
         <Route path="/configuracion" element={<Configuracion />} />
+        <Route path="/contenido" element={<Contenido nombreUsuario={nombreUsuario} />} />
+        <Route path="/SubirContenido" element={<SubirContenido nombreUsuario={nombreUsuario} />} />
       </Routes>
     </Router>
   );
