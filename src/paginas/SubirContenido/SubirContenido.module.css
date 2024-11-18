@@ -4,7 +4,7 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #2b3a42;
+  background-color: #000000;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   position: relative; /* Añadido para posicionar el botón de cerrar */
@@ -41,7 +41,7 @@
 .formGroup label {
   display: block;
   font-weight: bold;
-  color: #b0c4de; /* Texto en gris claro */
+  color: #4CAF50; 
   margin-bottom: 5px;
 }
 
@@ -51,21 +51,21 @@
   border-radius: 5px;
   border: 1px solid #ddd;
   font-size: 16px;
-  background-color: #f5f5f5; /* Fondo claro para inputs */
-  color: #333; /* Texto oscuro en inputs */
+  background-color: #333; 
+  color: white; /* Texto oscuro en inputs */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 .input[type="file"] {
   padding: 5px;
-  background-color: #f5f5f5; /* Fondo claro para botón de archivo */
-  color: #333; /* Texto oscuro */
+  background-color: #333; /* Fondo claro para botón de archivo */
+  color: white; /* Texto oscuro */
 }
 
 .uploadButton {
   width: 100%; /* Asegura que el botón de subir también ocupe todo el ancho */
   padding: 10px;
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -81,5 +81,5 @@
 }
 
 .uploadButton:hover:enabled {
-  background-color: #0056b3;
+  background-color: #369424;
 }

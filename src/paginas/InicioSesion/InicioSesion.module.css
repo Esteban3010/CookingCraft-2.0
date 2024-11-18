@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #39586D;
+  background-color:#5a6e3d;
 }
 
 .loginContainer {
@@ -23,7 +23,7 @@ h1 {
 }
 
 .loginBox {
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 1.5rem; /* Reducir un poco el padding */
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@ h2 {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
-  border: 1px solid #333;
+  border: 1px solid #ffffff;
   border-radius: 5px;
   font-size: 1rem;
   color: #ffffff;
@@ -69,7 +69,7 @@ h2 {
 }
 
 .loginButton {
-  background-color: #000000;
+  background-color: #4CAF50;
   color: #ffffff;
   padding: 15px 30px; /* Aumenta el relleno del botón */
   border: none;
@@ -81,7 +81,7 @@ h2 {
 }
 
 .loginButton:hover {
-  background-color: #333333;
+  background-color: #369424;
 }
 
 p {
@@ -91,12 +91,13 @@ p {
 }
 
 .registerLink {
-  color: #7d70d4;
+  color: #4CAF50;
   text-decoration: none;
 }
 
 .registerLink:hover {
   text-decoration: underline;
+  color: red; 
 }
 
 .errorMessage {

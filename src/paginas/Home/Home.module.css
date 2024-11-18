@@ -5,14 +5,14 @@
   justify-content: center;
   text-align: center;
   color: #000;
-  background-color: #39586D;
+  background-color: #5a6e3d;
   min-height: 100vh;
   font-size: 1.4rem;
 }
 
 p {
-  font: bold;
-  color: #000;
+  font: bolder;
+  color: #ffffff;
 } 
 
 h1 {

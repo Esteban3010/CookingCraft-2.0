@@ -34,9 +34,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: #011802b4;
     padding: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     width: 180%;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -61,12 +61,12 @@
 
 .studies {
     font-size: 1rem;
-    color: #555;
+    color: #ffffff;
 }
 
 .phrase {
     font-size: 0.9rem;
-    color: #777;
+    color: #ffffff;
 }
 
 .contact {
@@ -81,8 +81,15 @@
 
 .contactLink {
     font-size: 1.1rem;
-    color: #007bff;
+    color: #4CAF50;
     text-decoration: none;
     font-weight: bold;
 }
-  
+
+p {
+    color: #ffffff;
+}
+
+.pContact{
+    color: #4CAF50;
+}

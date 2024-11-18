@@ -36,13 +36,13 @@ h1 {
 
 .userName {
   font-size: 0.9rem;
-  color: #000000;
+  color: #ffffff;
   margin: 0;
 }
 
 .title {
   font-size: 1.5rem;
-  color: #000000;
+  color: #ffffff;
   text-align: center;
   flex: 0.875;
 }
@@ -79,7 +79,7 @@ h1 {
 }
 
 .feedBox{
-  background-color: #39586D;
+  background-color: #5a6e3d;
   border: 2px solid #000000;
   padding: 20px;
   margin: 20px;
@@ -91,7 +91,7 @@ h1 {
 .commentsSection {
   margin-top: 10px;
   padding: 10px;
-  background-color: #f1efef;
+  background-color: #ffffff65;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
@@ -116,13 +116,13 @@ h1 {
 
 .commentUser {
   font-size: 0.9rem;
-  color: #333;
+  color: #000000;
   margin: 0;
 }
 
 .commentText {
   font-size: 1rem;
-  color: #555;
+  color: #241f1f;
   margin: 5px 0;
 }
 
@@ -135,7 +135,7 @@ h1 {
   background: none;
   border: none;
   font-size: 0.9rem;
-  color: #007BFF;
+  color: #680000;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -175,7 +175,7 @@ h1 {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -186,7 +186,7 @@ h1 {
 }
 
 .subirButton:hover {
-  background-color: #0056b3;
+  background-color: #369424;
 }
 
 .commentInputContainer {
@@ -206,7 +206,13 @@ h1 {
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: white;
   cursor: pointer;
+}
+
+.commentButton:hover {
+  
+  background-color: #369424
+  
 }

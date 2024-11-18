@@ -61,7 +61,7 @@ const Recomendados = () => {
             <div className={styles.info}>
               <p className={styles.name}>{usuario.nombreUsuario}</p>
               <p className={styles.studies}>{usuario.estudios || 'Estudios'}</p>
-              <p className={styles.phrase}>{usuario.frase || 'Frase'}</p>
+              <p className={styles.phrase}>{usuario.frase || 'Estado'}</p>
             </div>
             <div className={styles.contact}>
               <span className={styles.phoneIcon}>📞</span>

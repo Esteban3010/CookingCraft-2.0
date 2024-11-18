@@ -8,7 +8,7 @@
 }
 
 .registerBox {
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 2.5rem;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -19,17 +19,17 @@
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #000000;
+  color: #ffffff;
 }
 
 h2 {
-  color: #000000;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
 
 h3 {
-  color: #000000;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
@@ -45,7 +45,7 @@ h3 {
 .inputGroup input {
   width: 100%;
   padding: 15px;
-  border: 1px solid #333;
+  border: 1px solid #ffffff;
   border-radius: 5px;
   font-size: 1rem;
   color: #ffffff;
@@ -53,7 +53,7 @@ h3 {
 }
 
 .registerButton {
-  background-color: #000000;
+  background-color:  #e87b3d;
   color: #ffffff;
   padding: 12px 20px;
   border: none;
@@ -62,28 +62,38 @@ h3 {
   cursor: pointer;
   margin-top: 1.2rem;
   width: 100%;
+  background-color: #4CAF50;
 }
 
 .registerButton:hover {
-  background-color: #333333;
+  background-color: #369424;        
 }
 
-.loginLink {
-  color: #7d70d4;
+/* .loginLink {
+  color: #d47070;
   text-decoration: none;
-  display: inline; /* Asegúrate de que sea inline o inline-block */
+  display: inline; /* Asegúrate de que sea inline o inline-block 
+} */
+
+/* .loginLink:hover {
+  text-decoration: underline;
+} */
+
+.loginLink {
+  color: #4CAF50;
+  text-decoration: none;
+  font: bolder;
 }
 
 .loginLink:hover {
+  color: red;
   text-decoration: underline;
 }
-
 
 p {
   font-size: 1rem;
   margin-top: 1.2rem;
 }
-
 
 .modalOverlay {
   position: fixed;
@@ -98,7 +108,7 @@ p {
 }
 
 .modalContent {
-  background: #ffffff;
+  background: #369424;
   padding: 15px 20px 10px 20px;
   border-radius: 8px; 
   text-align: center;
@@ -133,7 +143,6 @@ p {
   cursor: pointer;
 }
 
-
 .closeX:hover {
   color: #000;
 }
@@ -150,15 +159,6 @@ p {
 
 .closeButton:hover {
   background-color: #333;
-}
-
-.loginLink {
-  color: #7d70d4;
-  text-decoration: none;
-}
-
-.loginLink:hover {
-  text-decoration: underline;
 }
 
 .errorMessage {
@@ -243,7 +243,7 @@ p {
   top: 0;
   left: 0;
   height: 5px; 
-  background-color: rgba(128, 128, 128, 0.7); /* Color gris con transparencia */
+  background-color: rgba(0, 0, 0, 0.452); 
   width: 100%;
   animation: shrink 5s linear forwards;
 }

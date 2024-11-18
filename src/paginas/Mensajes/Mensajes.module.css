@@ -27,7 +27,7 @@
     display: flex;
     gap: 5px;
     align-items: center;
-    background-color: #2b3a42;
+    background-color: #4CAF50;
     padding: 10px;
     border-radius: 5px;
 }
@@ -68,7 +68,7 @@ button:hover {
 .chatContainer {
     max-height: 400px; /* Altura máxima para el contenedor de mensajes */
     overflow-y: auto; /* Permite el desplazamiento en el eje Y */
-    background-color: #1e2a30;
+    background-color: #0316038f;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
